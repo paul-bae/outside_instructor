@@ -1798,7 +1798,6 @@ async function loadInstructor() {
       currentInstructorId = null;
     }
     const { data: latest } = await db.from('instructors').select('id')
-      .or('is_deleted.is.null,is_deleted.eq.false')
       .order('created_at', { ascending: false }).limit(1).maybeSingle();
     if (latest) {
       localStorage.setItem('instructor_id', latest.id);
